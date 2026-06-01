@@ -1,11 +1,4 @@
-"""Base exercise engine: rep counting (FSM), form scoring, and feedback.
-
-Design notes:
-- Exercise logic lives in small Python subclasses (no eval of config strings),
-  which keeps it safe and easy to unit-test.
-- Subclasses describe their angles and form rules; the base handles the
-  finite-state machine, repetition counting, smoothing, and form score.
-"""
+"""Base exercise engine: rep counting, form scoring, and feedback."""
 
 from __future__ import annotations
 

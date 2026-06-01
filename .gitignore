@@ -16,7 +16,6 @@ outputs/*
 
 assets/pose_landmarker_lite.task
 
-# Reference repos (study only, not part of our product)
 examples/
 
 .env

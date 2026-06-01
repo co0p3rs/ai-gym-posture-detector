@@ -1,11 +1,3 @@
-"""Entry point.
-
-Examples:
-    python run.py                          # webcam, squat
-    python run.py --exercise deadlift      # webcam, deadlift
-    python run.py --video assets/test_videos/squat.mp4
-"""
-
 import argparse
 
 from app.exercises import available_exercises

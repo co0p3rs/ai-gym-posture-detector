@@ -1,8 +1,4 @@
-"""Deadlift: hip-hinge rep counting + back-rounding and lockout feedback.
-
-Tracked from the side. The hip angle (shoulder-hip-knee) opens from a hinged
-position to a full standing lockout. A rep is one hinge-and-stand cycle.
-"""
+"""Deadlift rep counting and form checks."""
 
 from app.angle_utils import angle_with_vertical, calculate_angle
 from app.exercises.base import (

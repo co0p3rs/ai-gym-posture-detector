@@ -1,8 +1,4 @@
-"""Video loop: pose detection, exercise analysis, and on-screen feedback.
-
-Input is either a webcam (default) or a video file (e.g. a clip filmed on a
-phone at the gym). Switch exercises live with number keys.
-"""
+"""Webcam/video loop with pose detection and exercise analysis."""
 
 import time
 
