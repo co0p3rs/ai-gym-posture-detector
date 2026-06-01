@@ -80,7 +80,7 @@ def draw_hud(frame, exercise_display: str, result: ExerciseResult, is_duration: 
         y -= th + 24
 
     # ---- help line ----
-    cv2.putText(frame, "q quit  r reset  1 squat  2 deadlift  3 plank",
+    cv2.putText(frame, "q/Esc quit  r reset  1 squat  2 deadlift  3 plank",
                 (16, h - 4), FONT, 0.45, (180, 180, 180), 1, cv2.LINE_AA)
 
 

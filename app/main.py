@@ -17,6 +17,15 @@ EXERCISE_KEYS = {
     ord("3"): "plank",
 }
 
+QUIT_KEYS = {ord("q"), ord("Q"), 27}  # q or Esc
+
+
+def _window_closed() -> bool:
+    try:
+        return cv2.getWindowProperty(WINDOW_NAME, cv2.WND_PROP_VISIBLE) < 1
+    except cv2.error:
+        return True
+
 
 def _open_capture(video: str | None, camera_index: int):
     if video:
@@ -43,14 +52,22 @@ def main(exercise_name: str = "squat", video: str | None = None, camera_index: i
     last_ts = -1
     start = time.monotonic()
 
+    last_frame = None
+
     try:
         while True:
+            if _window_closed():
+                break
+
             ok, frame = cap.read()
             if not ok:
                 if is_webcam:
                     break
-                # video finished: hold the last frame until the user quits
-                if cv2.waitKey(0) & 0xFF == ord("q"):
+                # Video ended: show last frame until quit (no respawn loop).
+                if last_frame is not None:
+                    cv2.imshow(WINDOW_NAME, last_frame)
+                key = cv2.waitKey(50) & 0xFF
+                if key in QUIT_KEYS or _window_closed():
                     break
                 continue
 
@@ -78,10 +95,14 @@ def main(exercise_name: str = "squat", video: str | None = None, camera_index: i
                     is_duration=isinstance(exercise, DurationExercise),
                 )
 
+            last_frame = frame
             cv2.imshow(WINDOW_NAME, frame)
 
+            if _window_closed():
+                break
+
             key = cv2.waitKey(1) & 0xFF
-            if key == ord("q"):
+            if key in QUIT_KEYS:
                 break
             if key == ord("r"):
                 exercise.reset()
